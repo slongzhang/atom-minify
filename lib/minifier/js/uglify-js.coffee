@@ -22,7 +22,8 @@ class UglifyJsMinifier extends BaseMinifier
         allowUnsafeNewFunction () =>
             uglifyJs = require('uglify-js')
             @prepareSourceMap(minifierOptions)
-            result = uglifyJs.minify(inputFilename, minifierOptions)
+            # result = uglifyJs.minify(inputFilename, minifierOptions)
+            result = uglifyJs.minify(fs.readFileSync(inputFilename, 'utf8'), minifierOptions)
 
         if not result.error
             minified = result.code
